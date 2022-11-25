@@ -291,13 +291,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#macos" class="md-nav__link">
-    MacOS
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -621,20 +614,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../play/on-macos/" class="md-nav__link">
-        On MacOS
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../play/with-falco/" class="md-nav__link">
         With Falco
       </a>
@@ -779,13 +758,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#macos" class="md-nav__link">
-    MacOS
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -857,36 +829,6 @@
 <p>After the bootstrapping has finished exit the menu and the terminal. Then create a new terminal.</p>
 <p>To restart the menu execute</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>playground
-</code></pre></div>
-<p>from anywhere in your terminal.</p>
-<p>Finally, create your local cluster by choosing <code>Create Cluster...</code> --&gt; <code>Local Cluster</code>.</p>
-<h2 id="macos">MacOS<a class="headerlink" href="#macos" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p><strong><em>Note:</em></strong> Untested for Simplicity since I'm going to replace Docker Desktop with PodMan.</p>
-</blockquote>
-<p>Follow this chapter if...</p>
-<ul>
-<li>you're using the Playground on a MacOS environment with</li>
-<li>Docker Desktop for Mac and</li>
-<li>are going to use the built in cluster</li>
-</ul>
-<p>Go to the <code>Preferences</code> of Docker for Mac, then <code>Resources</code> and <code>Advanced</code>. Ensure to have at least 4 CPUs and 12+ GB of Memory assigned to Docker. (This is not required when using the public clouds.)</p>
-<p>Due to the fact, that there is no <code>docker0</code> bridge on MacOS, we need to use ingresses to enable access to services running on our cluster. To make this work, you need to modify your local <code>hosts</code>-file.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo vi /etc/hosts
-</code></pre></div>
-<p>Change the line for <code>127.0.0.1</code> from</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>127.0.0.1 localhost
-</code></pre></div>
-<p>to</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>127.0.0.1 localhost playground-registry smartcheck grafana prometheus
-</code></pre></div>
-<p>Now, run the Playground</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>curl -fsSL https://raw.githubusercontent.com/mawinkler/c1-playground/simplicity/bin/playground <span class="p">|</span> bash
-</code></pre></div>
-<p>Choose Bootstrap.</p>
-<p>After the bootstrapping has finished exit the menu and the terminal. Then create a new terminal.</p>
-<p>To restart the menu execute</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>playground
 </code></pre></div>
 <p>from anywhere in your terminal.</p>
 <p>Finally, create your local cluster by choosing <code>Create Cluster...</code> --&gt; <code>Local Cluster</code>.</p>
