@@ -581,6 +581,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitlab/" class="md-nav__link">
+        GitLab
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -810,10 +824,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>deploy-jenkins.sh
 </code></pre></div>
 <h2 id="access-jenkins">Access Jenkins<a class="headerlink" href="#access-jenkins" title="Permanent link">&para;</a></h2>
-<p>By default Jenkins listens on Port 8080. The login credentials are reported by the deployment script. Example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Jekins Credentials: admin / 65fef61d973f4141aaff9269897d5cdc
-</code></pre></div>
-<p>The password is for one time use only. After logging in to</p>
+<p>By default Jenkins listens on Port 8080. The login credentials for the initial login are reported in the <code>Services</code> item of the Playground Menu. The password is for one time use only. After logging in to</p>
 <p><a href="http://localhost:8080">http://localhost:8080</a></p>
 <p>You will be prompted for it. In the following you need to create the initial admin user. There are no password policies set, so an <code>admin / trendmicro</code> will work :-).</p>
 <p>Next, deploy the recommended plug-ins and head over to the Jenkins console.</p>
@@ -822,7 +833,7 @@
 <ol>
 <li>Query the public IP of your Cloud9 instance with</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>curl http://169.254.169.254/latest/meta-data/public-ipv4
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl http://169.254.169.254/latest/meta-data/public-ipv4
 </code></pre></div>
 <ol>
 <li>In the IDE for the environment, on the menu bar, choose your user icon, and then choose Manage EC2 Instance</li>
@@ -847,60 +858,60 @@
 <p>Hit <code>[Save]</code>.</p>
 <p>Then, back on the main dashboard of Jenkins hit <code>+ New Item</code>, enter an item name (e.g. <code>ACR Scan</code>) and click on <code>Pipeline</code> followed by <code>[OK]</code>.</p>
 <p>For our simple example you can leave all the options unchecked. Into the <code>Pipeline</code>-section paste the following groovy code:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">pipeline</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="n">agent</span><span class="w"> </span><span class="n">any</span><span class="w"></span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="n">stages</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Test&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="n">withCredentials</span><span class="o">([</span><span class="w"></span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">          </span><span class="n">usernamePassword</span><span class="o">(</span><span class="w"></span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">            </span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s1">&#39;smartcheck-auth&#39;</span><span class="o">,</span><span class="w"></span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">            </span><span class="nl">usernameVariable:</span><span class="w"> </span><span class="s1">&#39;SMARTCHECK_AUTH_CREDS_USR&#39;</span><span class="o">,</span><span class="w"></span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">            </span><span class="nl">passwordVariable:</span><span class="w"> </span><span class="s1">&#39;SMARTCHECK_AUTH_CREDS_PSW&#39;</span><span class="w"></span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">          </span><span class="o">),</span><span class="w"></span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">          </span><span class="n">usernamePassword</span><span class="o">(</span><span class="w"></span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">            </span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s1">&#39;acr-auth&#39;</span><span class="o">,</span><span class="w"></span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">            </span><span class="nl">usernameVariable:</span><span class="w"> </span><span class="s1">&#39;ACR_AUTH_CREDS_USR&#39;</span><span class="o">,</span><span class="w"></span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">            </span><span class="nl">passwordVariable:</span><span class="w"> </span><span class="s1">&#39;ACR_AUTH_CREDS_PSW&#39;</span><span class="w"></span>
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">          </span><span class="o">)</span><span class="w"></span>
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">        </span><span class="o">])</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">          </span><span class="n">script</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">              </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
-<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="s2">              docker run deepsecurity/smartcheck-scan-action \</span>
-<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="s2">                --image-name astrolive.azurecr.io/astrolive:latest \</span>
-<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="s2">                --smartcheck-host=$DSSC_SERVICE \</span>
-<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="s2">                --smartcheck-user=$SMARTCHECK_AUTH_CREDS_USR \</span>
-<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="s2">                --smartcheck-password=$SMARTCHECK_AUTH_CREDS_PSW \</span>
-<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="s2">                --insecure-skip-tls-verify=true \</span>
-<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="s2">                --image-pull-auth=\&#39;{&quot;username&quot;: &quot;$ACR_AUTH_CREDS_USR&quot;, &quot;password&quot;: &quot;$ACR_AUTH_CREDS_PSW&quot;}\&#39;</span>
-<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="s2">              &quot;&quot;&quot;</span><span class="w"></span>
-<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">            </span><span class="o">}</span><span class="w"> </span><span class="k">catch</span><span class="o">(</span><span class="n">e</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
-<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">              </span><span class="n">script</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
-<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">                </span><span class="n">docker</span><span class="o">.</span><span class="na">image</span><span class="o">(</span><span class="s1">&#39;mawinkler/scan-report&#39;</span><span class="o">).</span><span class="na">pull</span><span class="o">()</span><span class="w"></span>
-<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">                </span><span class="n">docker</span><span class="o">.</span><span class="na">image</span><span class="o">(</span><span class="s1">&#39;mawinkler/scan-report&#39;</span><span class="o">).</span><span class="na">inside</span><span class="o">(</span><span class="s2">&quot;--entrypoint=&#39;&#39;&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
-<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="w">                  </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
-<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="s2">                    python /usr/src/app/scan-report.py \</span>
-<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="s2">                      --config_path &quot;/usr/src/app&quot; \</span>
-<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="s2">                      --name &quot;astrolive&quot; \</span>
-<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="s2">                      --image_tag &quot;latest&quot; \</span>
-<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="s2">                      --out_path &quot;${WORKSPACE}&quot; \</span>
-<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="s2">                      --service &quot;${DSSC_SERVICE}&quot; \</span>
-<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="s2">                      --username &quot;${SMARTCHECK_AUTH_CREDS_USR}&quot; \</span>
-<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="s2">                      --password &quot;${SMARTCHECK_AUTH_CREDS_PSW}&quot;</span>
-<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a><span class="s2">                  &quot;&quot;&quot;</span><span class="w"></span>
-<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a><span class="w">                  </span><span class="n">archiveArtifacts</span><span class="w"> </span><span class="nl">artifacts:</span><span class="w"> </span><span class="s1">&#39;report_*.pdf&#39;</span><span class="w"></span>
-<a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a><span class="w">                </span><span class="o">}</span><span class="w"></span>
-<a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a><span class="w">                </span><span class="n">error</span><span class="o">(</span><span class="s1">&#39;Issues in image found&#39;</span><span class="o">)</span><span class="w"></span>
-<a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a><span class="w">              </span><span class="o">}</span><span class="w"></span>
-<a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a><span class="w">            </span><span class="o">}</span><span class="w"></span>
-<a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a><span class="w">          </span><span class="o">}</span><span class="w"></span>
-<a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a><span class="w">        </span><span class="o">}</span><span class="w"></span>
-<a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a><span class="w">      </span><span class="o">}</span><span class="w"></span>
-<a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a><span class="w">    </span><span class="o">}</span><span class="w"></span>
-<a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a><span class="w">  </span><span class="o">}</span><span class="w"></span>
-<a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a><span class="o">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">pipeline</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="n">agent</span><span class="w"> </span><span class="n">any</span><span class="w"></span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="n">stages</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Test&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="n">withCredentials</span><span class="o">([</span><span class="w"></span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">          </span><span class="n">usernamePassword</span><span class="o">(</span><span class="w"></span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">            </span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s1">&#39;smartcheck-auth&#39;</span><span class="o">,</span><span class="w"></span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">            </span><span class="nl">usernameVariable:</span><span class="w"> </span><span class="s1">&#39;SMARTCHECK_AUTH_CREDS_USR&#39;</span><span class="o">,</span><span class="w"></span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">            </span><span class="nl">passwordVariable:</span><span class="w"> </span><span class="s1">&#39;SMARTCHECK_AUTH_CREDS_PSW&#39;</span><span class="w"></span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">          </span><span class="o">),</span><span class="w"></span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">          </span><span class="n">usernamePassword</span><span class="o">(</span><span class="w"></span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">            </span><span class="nl">credentialsId:</span><span class="w"> </span><span class="s1">&#39;acr-auth&#39;</span><span class="o">,</span><span class="w"></span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">            </span><span class="nl">usernameVariable:</span><span class="w"> </span><span class="s1">&#39;ACR_AUTH_CREDS_USR&#39;</span><span class="o">,</span><span class="w"></span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">            </span><span class="nl">passwordVariable:</span><span class="w"> </span><span class="s1">&#39;ACR_AUTH_CREDS_PSW&#39;</span><span class="w"></span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">          </span><span class="o">)</span><span class="w"></span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">        </span><span class="o">])</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">          </span><span class="n">script</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">              </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="s2">              docker run deepsecurity/smartcheck-scan-action \</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="s2">                --image-name astrolive.azurecr.io/astrolive:latest \</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="s2">                --smartcheck-host=$DSSC_SERVICE \</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="s2">                --smartcheck-user=$SMARTCHECK_AUTH_CREDS_USR \</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="s2">                --smartcheck-password=$SMARTCHECK_AUTH_CREDS_PSW \</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="s2">                --insecure-skip-tls-verify=true \</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="s2">                --image-pull-auth=\&#39;{&quot;username&quot;: &quot;$ACR_AUTH_CREDS_USR&quot;, &quot;password&quot;: &quot;$ACR_AUTH_CREDS_PSW&quot;}\&#39;</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="s2">              &quot;&quot;&quot;</span><span class="w"></span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">            </span><span class="o">}</span><span class="w"> </span><span class="k">catch</span><span class="o">(</span><span class="n">e</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">              </span><span class="n">script</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">                </span><span class="n">docker</span><span class="o">.</span><span class="na">image</span><span class="o">(</span><span class="s1">&#39;mawinkler/scan-report&#39;</span><span class="o">).</span><span class="na">pull</span><span class="o">()</span><span class="w"></span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">                </span><span class="n">docker</span><span class="o">.</span><span class="na">image</span><span class="o">(</span><span class="s1">&#39;mawinkler/scan-report&#39;</span><span class="o">).</span><span class="na">inside</span><span class="o">(</span><span class="s2">&quot;--entrypoint=&#39;&#39;&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"></span>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="w">                  </span><span class="n">sh</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="s2">                    python /usr/src/app/scan-report.py \</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="s2">                      --config_path &quot;/usr/src/app&quot; \</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="s2">                      --name &quot;astrolive&quot; \</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="s2">                      --image_tag &quot;latest&quot; \</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="s2">                      --out_path &quot;${WORKSPACE}&quot; \</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="s2">                      --service &quot;${DSSC_SERVICE}&quot; \</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="s2">                      --username &quot;${SMARTCHECK_AUTH_CREDS_USR}&quot; \</span>
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="s2">                      --password &quot;${SMARTCHECK_AUTH_CREDS_PSW}&quot;</span>
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="s2">                  &quot;&quot;&quot;</span><span class="w"></span>
+<a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a><span class="w">                  </span><span class="n">archiveArtifacts</span><span class="w"> </span><span class="nl">artifacts:</span><span class="w"> </span><span class="s1">&#39;report_*.pdf&#39;</span><span class="w"></span>
+<a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a><span class="w">                </span><span class="o">}</span><span class="w"></span>
+<a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a><span class="w">                </span><span class="n">error</span><span class="o">(</span><span class="s1">&#39;Issues in image found&#39;</span><span class="o">)</span><span class="w"></span>
+<a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a><span class="w">              </span><span class="o">}</span><span class="w"></span>
+<a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a><span class="w">            </span><span class="o">}</span><span class="w"></span>
+<a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a><span class="w">          </span><span class="o">}</span><span class="w"></span>
+<a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a><span class="w">        </span><span class="o">}</span><span class="w"></span>
+<a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a><span class="w">      </span><span class="o">}</span><span class="w"></span>
+<a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a><span class="w">    </span><span class="o">}</span><span class="w"></span>
+<a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a><span class="w">  </span><span class="o">}</span><span class="w"></span>
+<a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a><span class="o">}</span><span class="w"></span>
 </code></pre></div>
 <p>Hit <code>[Save]</code> and start the build with <code>Build Now</code>. If you want see the build progress click on the currently running build in the lower left area of your Jenkins. Within the <code>Console Output</code> you should see the output generated by your first Jenkins pipeline :-).</p>
 
@@ -941,13 +952,13 @@
       
       
         
-        <a href="../../play/on-linux/" class="md-footer__link md-footer__link--next" aria-label="Next: On Linux" rel="next">
+        <a href="../gitlab/" class="md-footer__link md-footer__link--next" aria-label="Next: GitLab" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              On Linux
+              GitLab
             </div>
           </div>
           <div class="md-footer__button md-icon">
