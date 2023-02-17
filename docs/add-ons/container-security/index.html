@@ -425,6 +425,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#using-a-proxy-with-kind-and-container-security" class="md-nav__link">
+    Using a Proxy with Kind and Container Security
+  </a>
+  
+    <nav class="md-nav" aria-label="Using a Proxy with Kind and Container Security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overrides" class="md-nav__link">
+    Overrides
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kind" class="md-nav__link">
+    Kind
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -642,20 +669,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../play/on-linux/" class="md-nav__link">
-        On Linux
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../play/with-falco/" class="md-nav__link">
         With Falco
       </a>
@@ -814,6 +827,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#using-a-proxy-with-kind-and-container-security" class="md-nav__link">
+    Using a Proxy with Kind and Container Security
+  </a>
+  
+    <nav class="md-nav" aria-label="Using a Proxy with Kind and Container Security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overrides" class="md-nav__link">
+    Overrides
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kind" class="md-nav__link">
+    Kind
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -879,6 +919,24 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>scan-namespace.sh
 </code></pre></div>
 <p>scans all used images within the current namespace. Eventually do a <code>kubectl config set-context --current --namespace &lt;NAMESPACE&gt;</code> beforehand to select the namespace to be scanned.</p>
+<h2 id="using-a-proxy-with-kind-and-container-security">Using a Proxy with Kind and Container Security<a class="headerlink" href="#using-a-proxy-with-kind-and-container-security" title="Permanent link">&para;</a></h2>
+<h3 id="overrides">Overrides<a class="headerlink" href="#overrides" title="Permanent link">&para;</a></h3>
+<p>Add the following section to your overrides of Container Security:</p>
+<p>Assumes, that the IP of the docker bridge is 172.17.0.1 if using kind. Otherwise simply put the IP/hostname of the proxy instead.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">proxy</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">httpProxy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">172.17.0.1:8081</span><span class="w"></span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">httpsProxy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">172.17.0.1:8081</span><span class="w"></span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">noProxy</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost</span><span class="w"></span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.0.0.1</span><span class="w"></span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.cluster.local</span><span class="w"></span>
+</code></pre></div>
+<h3 id="kind">Kind<a class="headerlink" href="#kind" title="Permanent link">&para;</a></h3>
+<p>Set the following environment variables before creating the cluster</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">export</span> <span class="nv">HTTP_PROXY</span><span class="o">=</span><span class="m">172</span>.17.0.1:3128
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">export</span> <span class="nv">HTTPS_PROXY</span><span class="o">=</span><span class="m">172</span>.17.0.1:3128
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nb">export</span> <span class="nv">NO_PROXY</span><span class="o">=</span>localhost,127.0.0.1
+</code></pre></div>
 
 
 
