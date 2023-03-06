@@ -838,7 +838,7 @@
 <ol>
 <li>In the IDE for the environment, on the menu bar, choose your user icon, and then choose Manage EC2 Instance</li>
 <li>Select the security group associated to the instance and select Edit inbound rules.</li>
-<li>Add an inbound rule for the Jenkins port (<code>8080</code>) configured in you config.json and choose Source Anywhere (or your personal IP address of course)</li>
+<li>Add an inbound rule for the Jenkins port (<code>8080</code>) configured in you config.yaml and choose Source Anywhere (or your personal IP address of course)</li>
 <li>Depending on the currently configured Network ACL you might need to add a rule to allow ingoing traffic on the same port. To do this go to the VPC within the Cloud9 instance is running and proceed to the associated Main network ACL.</li>
 <li>Ensure that an inbound rule is set which allows traffic on the port from above. If not, click on <code>Edit inbound rules</code> and add a rule with a low Rule number, Custom TCP, Port range 8080 (or your configured port), Source 0.0.0.0/0 (or your IP address) and Allow.</li>
 </ol>

@@ -818,7 +818,7 @@
 <p><code>Prometheus UI on: http://192.168.1.121:8081</code></p>
 <p><code>Grafana UI on: http://192.168.1.121:8080 w/ admin/trendmicro</code></p>
 <p><strong><em>Cloud9</em></strong></p>
-<p>See: <a href="../container-security/#access-smart-check">Access Smart Check (Cloud9)</a>, but use the <code>proxy_listen_port</code>s configured in your config.json (default: 8080 (grafana) and 8081 (prometheus)) and choose Source Anywhere. Don't forget to check your inbound rules to allow these ports.</p>
+<p>See: <a href="../container-security/#access-smart-check">Access Smart Check (Cloud9)</a>, but use the <code>proxy_listen_port</code>s configured in your config.yaml (default: 8080 (grafana) and 8081 (prometheus)) and choose Source Anywhere. Don't forget to check your inbound rules to allow these ports.</p>
 <p>Alternatively, you can get the configured port for the service with <code>cat services</code>.</p>
 <p>Access to the services should then be possible with the public ip of your Cloud9 instance with your configured port(s).</p>
 <p>Example:</p>

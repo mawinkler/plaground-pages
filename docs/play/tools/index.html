@@ -643,6 +643,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#script-sentry-trigger-ecr-scan" class="md-nav__link">
+    Script sentry-trigger-ecr-scan
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#script-sentry-trigger-lambda-scan" class="md-nav__link">
+    Script sentry-trigger-lambda-scan
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#script-sentry-remove-snapshots" class="md-nav__link">
     Script sentry-remove-snapshots
   </a>
@@ -863,6 +877,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#script-sentry-trigger-ecr-scan" class="md-nav__link">
+    Script sentry-trigger-ecr-scan
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#script-sentry-trigger-lambda-scan" class="md-nav__link">
+    Script sentry-trigger-lambda-scan
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#script-sentry-remove-snapshots" class="md-nav__link">
     Script sentry-remove-snapshots
   </a>
@@ -931,6 +959,8 @@
 <ol>
 <li><code>sentry-get-reports</code> - Downloads all Sentry reports generated within the last 24hs to your local directory</li>
 <li><code>sentry-trigger-ebs-scan</code> - Trigger a full scan for a given EC2 instance with one or more EBS volumes attached</li>
+<li><code>sentry-trigger-ecr-scan</code> - Trigger a full scan for a given ECR repo</li>
+<li><code>sentry-trigger-ebs-scan</code> - Trigger a full scan for a given Lambda</li>
 <li><code>sentry-remove-snapshots</code> - Delete snapshots created by <code>sentry-trigger-ebs-scan</code></li>
 </ol>
 <h3 id="script-sentry-get-reports">Script <code>sentry-get-reports</code><a class="headerlink" href="#script-sentry-get-reports" title="Permanent link">&para;</a></h3>
@@ -996,7 +1026,7 @@
 <a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>    └── Storage-TM-FileStorageSecurity_ScanSendEmail.json
 </code></pre></div>
 <h3 id="script-sentry-trigger-ebs-scan">Script <code>sentry-trigger-ebs-scan</code><a class="headerlink" href="#script-sentry-trigger-ebs-scan" title="Permanent link">&para;</a></h3>
-<p>The script is region-aware. This means unless you specify it the currently active AWS region from your shell will be used to query the reports.</p>
+<p>The script is region-aware. This means unless you specify it the currently active AWS region from your shell will be used.</p>
 <p>Example calls:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Help</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>sentry-trigger-ebs-scan <span class="nb">help</span>
@@ -1038,32 +1068,64 @@
 <a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>    <span class="s2">&quot;startDate&quot;</span>: <span class="s2">&quot;2023-03-02T14:36:00.763000+00:00&quot;</span>
 <a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="o">}</span>
 </code></pre></div>
+<h3 id="script-sentry-trigger-ecr-scan">Script <code>sentry-trigger-ecr-scan</code><a class="headerlink" href="#script-sentry-trigger-ecr-scan" title="Permanent link">&para;</a></h3>
+<p>The script is region-aware. This means unless you specify it the currently active AWS region from your shell will be used.</p>
+<p>Example calls:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Help</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>sentry-trigger-ecr-scan <span class="nb">help</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Please specify at least the ecr repository to be scanned.
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Usage: <span class="nv">REPO</span><span class="o">=</span>&lt;repo-name&gt; <span class="o">[</span><span class="nv">TAG</span><span class="o">=</span>&lt;image-tag<span class="o">]</span> <span class="o">[</span><span class="nv">REGION</span><span class="o">=</span>&lt;aws-region&gt;<span class="o">]</span> sentry-trigger-ecr-scan
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>Example:
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>  <span class="nv">REPO</span><span class="o">=</span>mawinkler/evil <span class="nv">TAG</span><span class="o">=</span>latest sentry-trigger-ecr-scan
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Trigger scan of ECR repo mawinkler/evil with tag 0.1 existing in the current region</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nv">REPO</span><span class="o">=</span>mawinkler/evil <span class="nv">TAG</span><span class="o">=</span><span class="m">0</span>.1 sentry-trigger-ecr-scan
+</code></pre></div>
+<h3 id="script-sentry-trigger-lambda-scan">Script <code>sentry-trigger-lambda-scan</code><a class="headerlink" href="#script-sentry-trigger-lambda-scan" title="Permanent link">&para;</a></h3>
+<p>The script is region-aware. This means unless you specify it the currently active AWS region from your shell will be used.</p>
+<p>Example calls:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Help</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>sentry-trigger-lambda-scan <span class="nb">help</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Please specify at least the lambda to be scanned.
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Usage: <span class="nv">LAMBDA</span><span class="o">=</span>&lt;lambda-name&gt; <span class="o">[</span><span class="nv">REGION</span><span class="o">=</span>&lt;aws-region&gt;<span class="o">]</span> sentry-trigger-lambda-scan
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>Example:
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>  <span class="nv">LAMBDA</span><span class="o">=</span>cloud-sentry-EbsResourceConsumer sentry-trigger-lambda-scan
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Trigger scan of ECR repo mawinkler/evil with tag 0.1 existing in the current region</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nv">LAMBDA</span><span class="o">=</span>cloud-sentry-EbsResourceConsumer sentry-trigger-lambda-scan
+</code></pre></div>
 <h3 id="script-sentry-remove-snapshots">Script <code>sentry-remove-snapshots</code><a class="headerlink" href="#script-sentry-remove-snapshots" title="Permanent link">&para;</a></h3>
 <p>The script is region-aware. This means unless you specify it the currently active AWS region from your shell will be used to query the reports.</p>
 <p>Example calls:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Help</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>sentry-trigger-ebs-scan <span class="nb">help</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Help</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>sentry-remove-snapshots <span class="nb">help</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Usage: <span class="o">[</span><span class="nv">REGION</span><span class="o">=</span>&lt;aws-region&gt;<span class="o">]</span> <span class="o">[</span><span class="nv">USERNAME</span><span class="o">=</span>&lt;username-tag&gt;<span class="o">]</span> sentry-remove-snapshots
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Example:
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>  <span class="nv">USERNAME</span><span class="o">=</span>cnctraining sentry-remove-snapshots
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Usage: <span class="o">[</span><span class="nv">REGION</span><span class="o">=</span>&lt;aws-region&gt;<span class="o">]</span> <span class="o">[</span><span class="nv">USERNAME</span><span class="o">=</span>&lt;username-tag&gt;<span class="o">]</span> sentry-remove-snapshots
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>Example:
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>  <span class="nv">USERNAME</span><span class="o">=</span>cnctraining sentry-remove-snapshots
 </code></pre></div>
 <p>Example result:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Using region eu-central-1 <span class="k">for</span> user cnctraining
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Snapshot<span class="o">(</span>s<span class="o">)</span> to delete
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>snap-0f4cc9d1d8a094861
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>snap-00f0472b795c00644
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>snap-025d77b5303a37b9d
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>snap-0b357bbc2fef3edad
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>snap-07ee34bf66221579d
-<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>snap-0b4d1faead597e047
-<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>Deleting snapshot snap-0f4cc9d1d8a094861
-<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>Deleting snapshot snap-00f0472b795c00644
-<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>Deleting snapshot snap-025d77b5303a37b9d
-<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>Deleting snapshot snap-0b357bbc2fef3edad
-<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>Deleting snapshot snap-07ee34bf66221579d
-<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>Deleting snapshot snap-0b4d1faead597e047
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Using region eu-central-1 <span class="k">for</span> user cnctraining
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>Snapshot<span class="o">(</span>s<span class="o">)</span> to delete
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>snap-0f4cc9d1d8a094861
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>snap-00f0472b795c00644
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>snap-025d77b5303a37b9d
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>snap-0b357bbc2fef3edad
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>snap-07ee34bf66221579d
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>snap-0b4d1faead597e047
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>Deleting snapshot snap-0f4cc9d1d8a094861
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>Deleting snapshot snap-00f0472b795c00644
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>Deleting snapshot snap-025d77b5303a37b9d
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>Deleting snapshot snap-0b357bbc2fef3edad
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>Deleting snapshot snap-07ee34bf66221579d
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>Deleting snapshot snap-0b4d1faead597e047
 </code></pre></div>
 <h3 id="repo-c1-sentry-reports-to-cloudwatch">Repo C1 Sentry Reports to CloudWatch<a class="headerlink" href="#repo-c1-sentry-reports-to-cloudwatch" title="Permanent link">&para;</a></h3>
 <p>Here, I'm describing a simple way to easily get new Sentry reports to CloudWatch using Lambda.</p>
@@ -1071,24 +1133,24 @@
 <h2 id="cloud-one-container-security">Cloud One Container Security<a class="headerlink" href="#cloud-one-container-security" title="Permanent link">&para;</a></h2>
 <h3 id="scan-image-and-scan-namespace-with-smart-check">Scan-Image and Scan-Namespace with Smart Check<a class="headerlink" href="#scan-image-and-scan-namespace-with-smart-check" title="Permanent link">&para;</a></h3>
 <p>The two scripts <code>scan-image</code> and <code>scan-namespace</code> do what you would expect. Running</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>scan-image nginx:latest
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>scan-image nginx:latest
 </code></pre></div>
 <p>starts an asynchronous scan of the latest version of nginx. The scan will run on Smart Check, but you are immedeately back in the shell. To access the scan results either use the UI or API of Smart Check.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="err">...</span><span class="w"></span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="p">{</span><span class="w"> </span><span class="err">cri</span><span class="kc">t</span><span class="err">ical</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"></span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span><span class="err">high</span><span class="p">:</span><span class="w"> </span><span class="mi">39</span><span class="p">,</span><span class="w"></span>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span><span class="err">medium</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w"></span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">  </span><span class="err">low</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w"></span>
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">  </span><span class="kc">ne</span><span class="err">gligible</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">  </span><span class="err">u</span><span class="kc">n</span><span class="err">k</span><span class="kc">n</span><span class="err">ow</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="err">...</span><span class="w"></span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="p">{</span><span class="w"> </span><span class="err">cri</span><span class="kc">t</span><span class="err">ical</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span><span class="err">high</span><span class="p">:</span><span class="w"> </span><span class="mi">39</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">  </span><span class="err">medium</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">  </span><span class="err">low</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">  </span><span class="kc">ne</span><span class="err">gligible</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">  </span><span class="err">u</span><span class="kc">n</span><span class="err">k</span><span class="kc">n</span><span class="err">ow</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>The script</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>scan-namespace.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>scan-namespace.sh
 </code></pre></div>
 <p>scans all used images within the current namespace. Eventually do a <code>kubectl config set-context --current --namespace &lt;NAMESPACE&gt;</code> beforehand to select the namespace to be scanned.</p>
 <h3 id="scan-image-with-artifact-scanning-as-a-service">Scan-Image with Artifact Scanning as a Service<a class="headerlink" href="#scan-image-with-artifact-scanning-as-a-service" title="Permanent link">&para;</a></h3>
 <p>The script <code>scan-assas</code> do what you would expect, creating a scan request utilizing syft to create an SBOM and upload it to ASaaS for the vulnerability scan. Running</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>scan-assas nginx:latest
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>scan-assas nginx:latest
 </code></pre></div>
 <p>Should do the trick.</p>
 

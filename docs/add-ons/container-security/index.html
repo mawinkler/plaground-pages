@@ -896,7 +896,7 @@
 <ol>
 <li>In the IDE for the environment, on the menu bar, choose your user icon, and then choose Manage EC2 Instance</li>
 <li>Select the security group associated to the instance and select Edit inbound rules.</li>
-<li>Add an inbound rule for the <code>proxy_listen_port</code> configured in you config.json (default: 8443) and choose Source Anywhere</li>
+<li>Add an inbound rule for the <code>proxy_listen_port</code> configured in you config.yaml (default: 8443) and choose Source Anywhere</li>
 <li>Depending on the currently configured Network ACL you might need to add a rule to allow ingoing traffic on the same port. To do this go to the VPC within the Cloud9 instance is running and proceed to the associated Main network ACL.</li>
 <li>Ensure that an inbound rule is set which allows traffic on the <code>proxy_listen_port</code>. If not, click on <code>Edit inbound rules</code> and add a rule with a low Rule number, Custom TCP, Port range 8443 (or your configured port), Source 0.0.0.0/0 and Allow.</li>
 </ol>
