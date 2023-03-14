@@ -852,11 +852,15 @@
 <p>Now, run the Playground</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>curl -fsSL https://raw.githubusercontent.com/mawinkler/c1-playground/master/bin/playground <span class="p">|</span> bash
 </code></pre></div>
+<p>If you run the above command on a newly created or rebooted Cloud9 instance and are receiving the following error, just wait a minute or two and rerun the curl command. The reason for this error is, that directly after starting the machine some update processes are running in the background causing the lock to the package manager process.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>E: Could not get lock /var/lib/dpkg/lock-frontend - open <span class="o">(</span><span class="m">11</span>: Resource temporarily unavailable<span class="o">)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>E: Unable to acquire the dpkg frontend lock <span class="o">(</span>/var/lib/dpkg/lock-frontend<span class="o">)</span>, is another process using it?
+</code></pre></div>
 <p>Choose <code>Bootstrap</code>. You will be asked for your AWS credentials. They will never be stored on disk and get removed from memory after creating and assigning an instance role to the Cloud9 instance.</p>
 <p>If you forgot to disable AWS managed temporary credentials you will asked to do it again.</p>
 <p>After the bootstrapping has finished exit the menu and the terminal. Then create a new terminal.</p>
 <p>To restart the menu execute</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>playground
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>playground
 </code></pre></div>
 <p>from anywhere in your terminal.</p>
 <p>Finally, create your local cluster by choosing <code>Create Cluster...</code> --&gt; <code>Local Cluster</code>.</p>

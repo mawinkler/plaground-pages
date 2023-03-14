@@ -445,6 +445,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#automatically-create-runtime-security-and-sentry-findings" class="md-nav__link">
+    Automatically create Runtime Security and Sentry Findings
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -854,6 +861,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#automatically-create-runtime-security-and-sentry-findings" class="md-nav__link">
+    Automatically create Runtime Security and Sentry Findings
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -920,6 +934,19 @@
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">export</span> <span class="nv">HTTPS_PROXY</span><span class="o">=</span><span class="m">172</span>.17.0.1:3128
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">export</span> <span class="nv">NO_PROXY</span><span class="o">=</span>localhost,127.0.0.1
 </code></pre></div>
+<h2 id="automatically-create-runtime-security-and-sentry-findings">Automatically create Runtime Security and Sentry Findings<a class="headerlink" href="#automatically-create-runtime-security-and-sentry-findings" title="Permanent link">&para;</a></h2>
+<p>To get as much events as possible for runtime detection either uncheck or log only the following parameters in your deployment policy:</p>
+<ul>
+<li>Kubectl access</li>
+<li>attempts to execute in/attach to a container</li>
+<li>attempts to establish port-forward on a container</li>
+</ul>
+<p>Ensure that an exception exists with</p>
+<p>Allow images with paths that equal <code>mawinkler/atomic_red_docker:latest</code>.</p>
+<p>Now, run</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kubectl apply -f <span class="nv">$PGPATH</span>/demos/dockerfiles/atomic-red/AtomicRedDocker-FullFalco.yaml
+</code></pre></div>
+<p>Soon, you should find quite a lot of events logged for runtime security. Additionally, if Sentry scans your cluster it should detect multiple malwares as well :-).</p>
 
 
 
