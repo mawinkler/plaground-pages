@@ -830,7 +830,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&lt;YOUR USER NAME&gt; <span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span> NOPASSWD:ALL 
 </code></pre></div>
 <p>Now, run the Playground</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>curl -fsSL https://raw.githubusercontent.com/mawinkler/c1-playground/master/bin/playground <span class="p">|</span> bash<span class="p">;</span> <span class="nb">exit</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>curl -fsSL https://raw.githubusercontent.com/mawinkler/c1-playground/master/bin/playground <span class="p">|</span> bash <span class="o">&amp;&amp;</span> <span class="nb">exit</span>
 </code></pre></div>
 <p>Choose Bootstrap.</p>
 <p>The bootstrapping process will exit your current terminal or shell after it has done it's work. Depending on your environment just create a new terminal session and continue.</p>
@@ -866,7 +866,7 @@
 <li>Close the Preferences tab</li>
 </ul>
 <p>Now, run the Playground</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>curl -fsSL https://raw.githubusercontent.com/mawinkler/c1-playground/master/bin/playground <span class="p">|</span> bash<span class="p">;</span> <span class="nb">exit</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>curl -fsSL https://raw.githubusercontent.com/mawinkler/c1-playground/master/bin/playground <span class="p">|</span> bash <span class="o">&amp;&amp;</span> <span class="nb">exit</span>
 </code></pre></div>
 <p>If you run the above command on a newly created or rebooted Cloud9 instance and are receiving the following error, just wait a minute or two and rerun the curl command. The reason for this error is, that directly after starting the machine some update processes are running in the background causing the lock to the package manager process.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>E: Could not get lock /var/lib/dpkg/lock-frontend - open <span class="o">(</span><span class="m">11</span>: Resource temporarily unavailable<span class="o">)</span>
