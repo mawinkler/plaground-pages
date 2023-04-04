@@ -13,7 +13,7 @@
     
     
       
-        <title>Open Policy Agent - Playground Simplicity</title>
+        <title>KUBEClarity - Playground Simplicity</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#add-on-open-policy-agent" class="md-skip">
+        <a href="#add-on-kubeclarity" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Open Policy Agent
+              KUBEClarity
             
           </span>
         </div>
@@ -418,11 +418,100 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../kubeclarity/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          KUBEClarity
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         KUBEClarity
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-kubeclarity" class="md-nav__link">
+    Deploy KUBEClarity
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access" class="md-nav__link">
+    Access
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cli" class="md-nav__link">
+    CLI
+  </a>
+  
+    <nav class="md-nav" aria-label="CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sbom-generation" class="md-nav__link">
+    SBOM Generation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vulnerability-scanning" class="md-nav__link">
+    Vulnerability Scanning
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exporting-results-to-kubeclarity-backend" class="md-nav__link">
+    Exporting Results to KubeClarity Backend
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -488,72 +577,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Open Policy Agent
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../opa/" class="md-nav__link">
         Open Policy Agent
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#deploy" class="md-nav__link">
-    Deploy
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
-  </a>
-  
-    <nav class="md-nav" aria-label="Usage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example-policy-registry-whitelisting" class="md-nav__link">
-    Example Policy: Registry Whitelisting
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -814,23 +842,51 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#deploy" class="md-nav__link">
-    Deploy
+  <a href="#deploy-kubeclarity" class="md-nav__link">
+    Deploy KUBEClarity
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
+  <a href="#access" class="md-nav__link">
+    Access
   </a>
   
-    <nav class="md-nav" aria-label="Usage">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cli" class="md-nav__link">
+    CLI
+  </a>
+  
+    <nav class="md-nav" aria-label="CLI">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example-policy-registry-whitelisting" class="md-nav__link">
-    Example Policy: Registry Whitelisting
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sbom-generation" class="md-nav__link">
+    SBOM Generation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vulnerability-scanning" class="md-nav__link">
+    Vulnerability Scanning
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exporting-results-to-kubeclarity-backend" class="md-nav__link">
+    Exporting Results to KubeClarity Backend
   </a>
   
 </li>
@@ -855,38 +911,58 @@
                   
 
 
-<h1 id="add-on-open-policy-agent">Add-On: Open Policy Agent<a class="headerlink" href="#add-on-open-policy-agent" title="Permanent link">&para;</a></h1>
-<h2 id="deploy">Deploy<a class="headerlink" href="#deploy" title="Permanent link">&para;</a></h2>
-<p>The Open Policy Agent (OPA, pronounced “oh-pa”) is an open source, general-purpose policy engine that unifies policy enforcement across the stack. OPA provides a high-level declarative language that lets you specify policy as code and simple APIs to offload policy decision-making from your software. You can use OPA to enforce policies in microservices, Kubernetes, CI/CD pipelines, API gateways, and more.</p>
-<p>You don’t have to write policies on your own at the beginning of your journey, OPA and Gatekeeper both have excellent community libraries. You can have a look, fork them, and use them in your organization from here, <a href="https://github.com/open-policy-agent/library">OPA</a>, and <a href="https://github.com/open-policy-agent/gatekeeper-library">Gatekeeper</a> libraries.</p>
-<p>To deploy the registry run:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>deploy-opa.sh
+<h1 id="add-on-kubeclarity">Add-On: KUBEClarity<a class="headerlink" href="#add-on-kubeclarity" title="Permanent link">&para;</a></h1>
+<p>KubeClarity is a tool for detection and management of Software Bill Of Materials (SBOM) and vulnerabilities of container images and filesystems. It scans both runtime K8s clusters and CI/CD pipelines for enhanced software supply chain security.</p>
+<p>Source Repo: <a href="https://github.com/openclarity/kubeclarity">here</a></p>
+<h2 id="deploy-kubeclarity">Deploy KUBEClarity<a class="headerlink" href="#deploy-kubeclarity" title="Permanent link">&para;</a></h2>
+<p>The deployment of KUBEClarity runtime security is very straigt forward with the playground. Simply execute the script <code>deploy-kubeclarity.sh</code>, everything else is prepared.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>deploy-kubeclarity.sh
 </code></pre></div>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<h3 id="example-policy-registry-whitelisting">Example Policy: Registry Whitelisting<a class="headerlink" href="#example-policy-registry-whitelisting" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cat <span class="s">&lt;&lt;EOF &gt;opa/registry-whitelist.rego</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="s">package kubernetes.admission</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="s">deny[msg] {</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="s">  input.request.kind.kind == &quot;Pod&quot;</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="s">  image := input.request.object.spec.containers[_].image</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="s">  not startswith(image, &quot;172.18.255.1/&quot;)</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="s">  msg := sprintf(&quot;Image is not from our trusted cluster registry: %v&quot;, [image])</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="s">}</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="s">EOF</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>kubectl -n opa create configmap registry-whitelist --from-file<span class="o">=</span>opa/registry-whitelist.rego
+<h2 id="access">Access<a class="headerlink" href="#access" title="Permanent link">&para;</a></h2>
+<p>Follow the steps for your platform below. A file called <code>services</code> is either created or updated with the link and the credentials to connect to KUBEClarity.</p>
+<h2 id="cli">CLI<a class="headerlink" href="#cli" title="Permanent link">&para;</a></h2>
+<p>KubeClarity includes a CLI that can be run locally and especially useful for CI/CD pipelines.
+It allows to analyze images and directories to generate SBOM, and scan it for vulnerabilities.
+The results can be exported to KubeClarity backend.</p>
+<h3 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h3>
+<p>Download the release distribution for your OS from the
+<a href="https://github.com/openclarity/kubeclarity/releases">releases page</a></p>
+<p>Unpack the <code>kubeclarity-cli</code> binary, add it to your PATH, and you are good to go!</p>
+<p>Alternatively, simply run the command below:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl -sL https://github.com/openclarity/kubeclarity/releases/download/v2.14.0/kubeclarity-cli-2.14.0-linux-amd64.tar.gz <span class="se">\</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  -o /tmp/kubeclarity-cli.tar.gz <span class="o">&amp;&amp;</span> <span class="se">\</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  tar xfvz /tmp/kubeclarity-cli.tar.gz kubeclarity-cli <span class="o">&amp;&amp;</span> <span class="se">\</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  mv kubeclarity-cli <span class="si">${</span><span class="nv">PGPATH</span><span class="si">}</span>/bin <span class="o">&amp;&amp;</span> <span class="se">\</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  rm /tmp/kubeclarity-cli.tar.gz
 </code></pre></div>
-<p>Try to create a deployment</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl create deployment <span class="nb">echo</span> --image<span class="o">=</span>inanimate/echo-server
-</code></pre></div>
-<p>If you now run a <code>kubectl get pods</code>, the echo-server should <strong><em>NOT</em></strong> show up.</p>
-<p>Access the logs from OPA</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl -n opa logs -l <span class="nv">app</span><span class="o">=</span>opa -c opa -f
-</code></pre></div>
-<p>There should be something like</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Error creating: admission webhook \&quot;validating-webhook.openpolicyagent.org\&quot; denied the request: Image is not from our trusted cluster registry: inanimate/echo-server&quot;</span><span class="p">,</span><span class="w"></span>
-</code></pre></div>
+<p>curl -s -L https://github.com/trendmicro/cloudone-container-security-helm/archive/master.tar.gz -o $PGPATH/master-cs.tar.gz</p>
+<h3 id="sbom-generation">SBOM Generation<a class="headerlink" href="#sbom-generation" title="Permanent link">&para;</a></h3>
+<p>Usage:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubeclarity-cli analyze &lt;image/directory name&gt; --input-type &lt;dir|file|image(default)&gt; -o &lt;output file or stdout&gt;
+</code></pre></div></p>
+<p>Example:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubeclarity-cli analyze --input-type image nginx:latest -o nginx.sbom
+</code></pre></div></p>
+<p>Optionally a list of the content analyzers to use can be configured using the <code>ANALYZER_LIST</code> env
+variable seperated by a space (e.g <code>ANALYZER_LIST="&lt;analyzer 1 name&gt; &lt;analyzer 2 name&gt;"</code>)</p>
+<p>Example:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ANALYZER_LIST=&quot;syft gomod&quot; kubeclarity-cli analyze --input-type image nginx:latest -o nginx.sbom
+</code></pre></div></p>
+<h3 id="vulnerability-scanning">Vulnerability Scanning<a class="headerlink" href="#vulnerability-scanning" title="Permanent link">&para;</a></h3>
+<p>Usage:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubeclarity-cli scan &lt;image/sbom/directoty/file name&gt; --input-type &lt;sbom|dir|file|image(default)&gt; -f &lt;output file&gt;
+</code></pre></div></p>
+<p>Example:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kubeclarity-cli scan nginx.sbom --input-type sbom
+</code></pre></div></p>
+<p>Optionally a list of the vulnerability scanners to use can be configured using the <code>SCANNERS_LIST</code> env
+variable seperated by a space (e.g <code>SCANNERS_LIST="&lt;Scanner1 name&gt; &lt;Scanner2 name&gt;"</code>)</p>
+<p>Example:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>SCANNERS_LIST=&quot;grype trivy&quot; kubeclarity-cli scan nginx.sbom --input-type sbom
+</code></pre></div></p>
+<h3 id="exporting-results-to-kubeclarity-backend">Exporting Results to KubeClarity Backend<a class="headerlink" href="#exporting-results-to-kubeclarity-backend" title="Permanent link">&para;</a></h3>
+<p>To export CLI results to the KubeClarity backend, need to use an application ID as defined by the KubeClarity backend.
+The application ID can be found in the Applications screen in the UI or using the KubeClarity API.</p>
 
 
 
@@ -909,7 +985,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../kubescape/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Kubescape" rel="prev">
+        <a href="../gatekeeper/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Gatekeeper" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -918,20 +994,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Kubescape
+              Gatekeeper
             </div>
           </div>
         </a>
       
       
         
-        <a href="../prometheus-grafana/" class="md-footer__link md-footer__link--next" aria-label="Next: Prometheus &amp; Grafana" rel="next">
+        <a href="../harbor/" class="md-footer__link md-footer__link--next" aria-label="Next: Harbor" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Prometheus & Grafana
+              Harbor
             </div>
           </div>
           <div class="md-footer__button md-icon">
