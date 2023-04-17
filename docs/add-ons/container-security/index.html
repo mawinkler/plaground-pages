@@ -915,7 +915,7 @@
 <h2 id="deploy">Deploy<a class="headerlink" href="#deploy" title="Permanent link">&para;</a></h2>
 <p>To deploy Container Security and/or Smart Check go to <code>Services --&gt; Deploy</code> and choose either Container Security or Smart Check.</p>
 <blockquote>
-<p><strong><em>Note:</em></strong> If you want to deploy on EKS be aware of the fact that the node pool created by the Playground uses <code>t3.medium</code> instances. This is <strong><em>NOT</em></strong> enough. If you want to deploy Smart Check choose <code>m5.xlarge</code> in the config.yaml before creating the cluster.</p>
+<p><strong><em>Note:</em></strong> If you want to deploy on EKS be aware of the fact that the node pool created by the Playground uses <code>t3.medium</code> instances. This enough for Container Security but <strong><em>NOT</em></strong> for Smart Check. If you want to deploy Smart Check choose <code>m5.xlarge</code> in the config.yaml before creating the cluster.</p>
 </blockquote>
 <h2 id="access-container-security">Access Container Security<a class="headerlink" href="#access-container-security" title="Permanent link">&para;</a></h2>
 <p>Head over to your Cloud One Account and select the Container Security tile.</p>
