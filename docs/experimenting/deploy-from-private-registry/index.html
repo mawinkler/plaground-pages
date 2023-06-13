@@ -766,13 +766,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#smart-check-pulltag-push" class="md-nav__link">
-    Smart Check - Pull,Tag, &amp; Push
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -849,13 +842,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#smart-check-pulltag-push" class="md-nav__link">
-    Smart Check - Pull,Tag, &amp; Push
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -901,7 +887,7 @@
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nb">export</span> <span class="nv">TAG</span><span class="o">=</span><span class="k">$(</span>yq <span class="s1">&#39;.images.defaults.tag&#39;</span> cloudone-container-security-helm-master/values.yaml<span class="k">)</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nb">echo</span> <span class="si">${</span><span class="nv">TAG</span><span class="si">}</span>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># Pull Smart Check images from Dockerhub.</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># Pull Container Security images from Dockerhub.</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>awk -v <span class="nv">tag</span><span class="o">=</span><span class="nv">$TAG</span> <span class="s1">&#39;$1 == &quot;repository:&quot; {printf &quot;trendmicrocloudone/%s:%s\n&quot;,$2,tag;}&#39;</span> <span class="se">\</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>  cloudone-container-security-helm-master/values.yaml <span class="p">|</span> xargs -I <span class="o">{}</span> docker pull <span class="o">{}</span>
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
@@ -943,56 +929,6 @@
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    --namespace trendmicro-system <span class="se">\</span>
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    --install <span class="se">\</span>
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>  https://github.com/trendmicro/cloudone-container-security-helm/archive/master.tar.gz
-</code></pre></div>
-<h2 id="smart-check-pulltag-push">Smart Check - Pull,Tag, &amp; Push<a class="headerlink" href="#smart-check-pulltag-push" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Enumerate the Images</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>curl -L https://github.com/deep-security/smartcheck-helm/archive/master.tar.gz -o master-dssc.tar.gz
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>tar xfvz master-dssc.tar.gz
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nb">export</span> <span class="nv">TAG</span><span class="o">=</span><span class="k">$(</span>yq <span class="s1">&#39;.images.defaults.tag&#39;</span> smartcheck-helm-master/values.yaml<span class="k">)</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nb">echo</span> <span class="si">${</span><span class="nv">TAG</span><span class="si">}</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># Pull Smart Check images from Dockerhub.</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>awk -v <span class="nv">tag</span><span class="o">=</span><span class="nv">$TAG</span> <span class="s1">&#39;$1 == &quot;repository:&quot; {printf &quot;deepsecurity/%s:%s\n&quot;,$2,tag;}&#39;</span> <span class="se">\</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>  smartcheck-helm-master/values.yaml <span class="p">|</span> xargs -I <span class="o">{}</span> docker pull <span class="o">{}</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="c1"># Tag the images with your target registry information, making sure to preserve the original image name.</span>
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>awk -v <span class="nv">tag</span><span class="o">=</span><span class="nv">$TAG</span> <span class="s1">&#39;$1 == &quot;repository:&quot; {printf &quot;deepsecurity/%s:%s\n&quot;,$2,tag;}&#39;</span> <span class="se">\</span>
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>  smartcheck-helm-master/values.yaml <span class="p">|</span> xargs -I <span class="o">{}</span> docker tag <span class="o">{}</span> <span class="si">${</span><span class="nv">REGISTRY</span><span class="si">}</span>/<span class="o">{}</span>
-<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
-<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="c1"># Push the images to the private registry</span>
-<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>awk -v <span class="nv">tag</span><span class="o">=</span><span class="nv">$TAG</span> <span class="s1">&#39;$1 == &quot;repository:&quot; {printf &quot;deepsecurity/%s:%s\n&quot;,$2,tag;}&#39;</span> <span class="se">\</span>
-<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>  smartcheck-helm-master/values.yaml <span class="p">|</span> xargs -I <span class="o">{}</span> docker push <span class="si">${</span><span class="nv">REGISTRY</span><span class="si">}</span>/<span class="o">{}</span>
-<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>
-<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="c1"># Create image pull secret</span>
-<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>kubectl create secret docker-registry regcred <span class="se">\</span>
-<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>  --docker-server<span class="o">=</span><span class="si">${</span><span class="nv">REGISTRY</span><span class="si">}</span> <span class="se">\</span>
-<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>  --docker-username<span class="o">=</span><span class="si">${</span><span class="nv">USERNAME</span><span class="si">}</span> <span class="se">\</span>
-<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>  --docker-password<span class="o">=</span><span class="si">${</span><span class="nv">PASSWORD</span><span class="si">}</span> <span class="se">\</span>
-<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>  --namespace<span class="o">=</span>smartcheck
-</code></pre></div>
-<p>Update Container Securities <code>overrides.yaml</code> to override the default source registry with your private registry:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nn">...</span><span class="w"></span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nt">images</span><span class="p">:</span><span class="w"></span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">defaults</span><span class="p">:</span><span class="w"></span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="nt">registry</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">REGISTRY</span><span class="p p-Indicator">]</span><span class="w"></span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">TAG</span><span class="p p-Indicator">]</span><span class="w"></span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="nt">imagePullSecret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">regcred</span><span class="w"></span>
-</code></pre></div>
-<p>Example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nn">...</span><span class="w"></span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">images</span><span class="p">:</span><span class="w"></span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="nt">defaults</span><span class="p">:</span><span class="w"></span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="nt">registry</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">172.250.255.1:5000</span><span class="w"></span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.2.76</span><span class="w"></span>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="nt">imagePullSecret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">regcred</span><span class="w"></span>
-</code></pre></div>
-<p>Deploy Smart Check</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>helm install <span class="se">\</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    smartcheck <span class="se">\</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    --values <span class="nv">$PGPATH</span>/overrides.yaml <span class="se">\</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    --namespace smartcheck <span class="se">\</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    --install <span class="se">\</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>  https://github.com/deep-security/smartcheck-helm/archive/master.tar.gz
 </code></pre></div>
 
 

@@ -738,33 +738,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#cloud-one-container-security" class="md-nav__link">
-    Cloud One Container Security
-  </a>
-  
-    <nav class="md-nav" aria-label="Cloud One Container Security">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#scan-image-and-scan-namespace-with-smart-check" class="md-nav__link">
-    Scan-Image and Scan-Namespace with Smart Check
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scan-image-with-artifact-scanning-as-a-service" class="md-nav__link">
-    Scan-Image with Artifact Scanning as a Service
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -984,33 +957,6 @@
           <li class="md-nav__item">
   <a href="#repo-c1-sentry-reports-to-cloudwatch" class="md-nav__link">
     Repo C1 Sentry Reports to CloudWatch
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cloud-one-container-security" class="md-nav__link">
-    Cloud One Container Security
-  </a>
-  
-    <nav class="md-nav" aria-label="Cloud One Container Security">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#scan-image-and-scan-namespace-with-smart-check" class="md-nav__link">
-    Scan-Image and Scan-Namespace with Smart Check
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scan-image-with-artifact-scanning-as-a-service" class="md-nav__link">
-    Scan-Image with Artifact Scanning as a Service
   </a>
   
 </li>
@@ -1293,29 +1239,6 @@
 <h3 id="repo-c1-sentry-reports-to-cloudwatch">Repo C1 Sentry Reports to CloudWatch<a class="headerlink" href="#repo-c1-sentry-reports-to-cloudwatch" title="Permanent link">&para;</a></h3>
 <p>Here, I'm describing a simple way to easily get new Sentry reports to CloudWatch using Lambda.</p>
 <p><a href="https://github.com/mawinkler/c1-sentry-reports-to-cloudwatch/blob/main/docs/reports-to-cloudwatch.md">Repo Link</a></p>
-<h2 id="cloud-one-container-security">Cloud One Container Security<a class="headerlink" href="#cloud-one-container-security" title="Permanent link">&para;</a></h2>
-<h3 id="scan-image-and-scan-namespace-with-smart-check">Scan-Image and Scan-Namespace with Smart Check<a class="headerlink" href="#scan-image-and-scan-namespace-with-smart-check" title="Permanent link">&para;</a></h3>
-<p>The two scripts <code>scan-image</code> and <code>scan-namespace</code> do what you would expect. Running</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>scan-image nginx:latest
-</code></pre></div>
-<p>starts an asynchronous scan of the latest version of nginx. The scan will run on Smart Check, but you are immedeately back in the shell. To access the scan results either use the UI or API of Smart Check.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="err">...</span><span class="w"></span>
-<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="p">{</span><span class="w"> </span><span class="err">cri</span><span class="kc">t</span><span class="err">ical</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"></span>
-<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">  </span><span class="err">high</span><span class="p">:</span><span class="w"> </span><span class="mi">39</span><span class="p">,</span><span class="w"></span>
-<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="w">  </span><span class="err">medium</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w"></span>
-<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="w">  </span><span class="err">low</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w"></span>
-<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="w">  </span><span class="kc">ne</span><span class="err">gligible</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
-<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="w">  </span><span class="err">u</span><span class="kc">n</span><span class="err">k</span><span class="kc">n</span><span class="err">ow</span><span class="kc">n</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-</code></pre></div>
-<p>The script</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>scan-namespace.sh
-</code></pre></div>
-<p>scans all used images within the current namespace. Eventually do a <code>kubectl config set-context --current --namespace &lt;NAMESPACE&gt;</code> beforehand to select the namespace to be scanned.</p>
-<h3 id="scan-image-with-artifact-scanning-as-a-service">Scan-Image with Artifact Scanning as a Service<a class="headerlink" href="#scan-image-with-artifact-scanning-as-a-service" title="Permanent link">&para;</a></h3>
-<p>The script <code>scan-assas</code> does what you would expect, creating a scan request utilizing syft to create an SBOM and upload it to ASaaS for the vulnerability scan. Running</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>scan-assas nginx:latest
-</code></pre></div>
-<p>should do the trick.</p>
 
 
 

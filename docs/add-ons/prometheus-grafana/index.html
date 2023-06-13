@@ -850,17 +850,16 @@
 <ul>
 <li><a href="https://github.com/mawinkler/api-collector">api-collector</a></li>
 <li><a href="../falco/">Falco</a></li>
-<li>smartcheck-metrics</li>
 </ul>
 <h2 id="access">Access<a class="headerlink" href="#access" title="Permanent link">&para;</a></h2>
-<p>Follow the steps for your platform below. A file called <code>services</code> is either created or updated with the link and the credentials to connect to smartcheck.</p>
+<p>Follow the steps for your platform below.</p>
 <p><strong><em>Linux</em></strong></p>
 <p>By default, the Prometheus UI is on port 8081, Grafana on port 8080.</p>
 <p>Example:</p>
 <p><code>Prometheus UI on: http://192.168.1.121:8081</code></p>
 <p><code>Grafana UI on: http://192.168.1.121:8080 w/ admin/trendmicro</code></p>
 <p><strong><em>Cloud9</em></strong></p>
-<p>See: <a href="../container-security/#access-smart-check">Access Smart Check (Cloud9)</a>, but use the <code>proxy_listen_port</code>s configured in your config.yaml (default: 8080 (grafana) and 8081 (prometheus)) and choose Source Anywhere. Don't forget to check your inbound rules to allow these ports.</p>
+<p>See: <a href="../falco/#access">Access Falco (Cloud9)</a>, but use the <code>proxy_listen_port</code>s configured in your config.yaml (default: 8080 (grafana) and 8081 (prometheus)) and choose Source Anywhere. Don't forget to check your inbound rules to allow these ports.</p>
 <p>Alternatively, you can get the configured port for the service with <code>cat services</code>.</p>
 <p>Access to the services should then be possible with the public ip of your Cloud9 instance with your configured port(s).</p>
 <p>Example:</p>

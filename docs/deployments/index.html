@@ -785,7 +785,6 @@
 <p>The playground provides a couple of scripts which deploy pre-configured versions of several products. This includes currently:</p>
 <ul>
 <li>Container Security</li>
-<li>Smart Check</li>
 <li>Falco Runtime Security</li>
 <li>Open Policy Agent</li>
 <li>Gatekeeper</li>
@@ -799,8 +798,8 @@
 <li>Workload Security</li>
 </ul>
 <p>Deploy the products via <code>Deploy...</code> in the menu.</p>
-<p>In addition to the above the playground now supports AWS CodePipelines. The pipeline builds a container image based on a sample repo, scans it with Smart Check and deploys it with integrated Cloud One Application Security to the EKS cluster.</p>
-<p>The pipeline requires an EKS with a deployed Smart Check. If everything has been set up, running the script <code>deploy-pipeline-aws.sh</code> should do the trick :-). When you're done with the pipeline run the generated script <code>pipeline-aws-down.sh</code> to tear it down.</p>
+<p>In addition to the above the playground now supports AWS CodePipelines. The pipeline builds a container image based on a sample repo, scans it with Artifact Scanning as a Service and deploys it with integrated Cloud One Application Security to the EKS cluster.</p>
+<p>The pipeline requires an EKS. If everything has been set up, running the script <code>deploy-pipeline-aws.sh</code> should do the trick :-). When you're done with the pipeline run the generated script <code>pipeline-aws-down.sh</code> to tear it down.</p>
 
 
 
