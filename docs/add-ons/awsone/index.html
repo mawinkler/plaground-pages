@@ -640,13 +640,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#create-ssh-keypair" class="md-nav__link">
-    Create SSH Keypair
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -667,8 +660,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#optional-sserver-workload-protection" class="md-nav__link">
+    Optional: Sserver &amp; Workload Protection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#create-findings" class="md-nav__link">
     Create Findings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atomicred" class="md-nav__link">
+    AtomicRed
   </a>
   
 </li>
@@ -897,13 +904,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#create-ssh-keypair" class="md-nav__link">
-    Create SSH Keypair
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -924,8 +924,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#optional-sserver-workload-protection" class="md-nav__link">
+    Optional: Sserver &amp; Workload Protection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#create-findings" class="md-nav__link">
     Create Findings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atomicred" class="md-nav__link">
+    AtomicRed
   </a>
   
 </li>
@@ -963,123 +977,109 @@
 <p>All instances are based on Ubuntu Focal 20.04 with different configurations:</p>
 <p>Instance Web1:</p>
 <ul>
-<li>Nginx</li>
+<li>Ubuntu Linux 20.04</li>
+<li>Nginx and Wordpress deployment</li>
 <li>Atomic Launcher version 1.0.0.1009</li>
-<li>Vision One Basecamp agent</li>
-</ul>
-<p>Instance Web2:</p>
-<ul>
-<li>Wordpress deployment</li>
-<li>Atomic Launcher version 1.0.0.1009</li>
-<li>Workload Security agent</li>
+<li>Vision One Endpoint Security Basecamp agent for Server &amp; Workload Protection</li>
 </ul>
 <p>Instance Db1:</p>
 <ul>
+<li>Ubuntu Linux 20.04</li>
 <li>MySql databse</li>
-<li>Workload Security agent</li>
+<li>Vision One Endpoint Security Basecamp agent for Server &amp; Workload Protection</li>
+</ul>
+<p>Instance Srv1:</p>
+<ul>
+<li>Windows Server 2022</li>
+<li>Atomic Launcher version 1.0.0.1013</li>
+<li>Vision One Endpoint Security Basecamp agent for Server &amp; Workload Protection</li>
 </ul>
 <blockquote>
-<p><strong><em>Note:</em></strong> You need to download the Atomic Launcher from <a href="https://powerbox-jarvis-file.trendmicro-cloud.com/SFDC/DownloadFile_iv_jarvis.php?Query=qFFk%2B1MYPMLKEci1xi14KCgv1vM3eXaXOauUOhpMNNvwnxQddJMSFOHKNsbQ9F2LoIFZHLssJibE2BTXUIDXKiZQF0H4L%2FTjVNji9DGALMQk0P9PFprMO2gOpJgGjlRqIIbkBV3SGTjY4DJVqGqoEQ%3D%3D&amp;iv=ZDSEnjIt0ZefLf74">here</a> and store it in the <code>./terraform-awsone/files</code>-directory. You do <em>NOT</em> need to unzip the file.</p>
+<p><strong><em>Note:</em></strong> <strong><em>V1ES</em></strong> - You need to download the installer packages for Windows and Linux operating systems from your V1ES - Endpoint inventory app. The downloaded files should be named <code>TMServerAgent_Linux_auto_64_Server_-_Workload_Protection_Manager.tar</code> respectively <code>TMServerAgent_Windows_auto_64_Server_-_Workload_Protection_Manager.zip</code> and are to be placed into the directory <code>./terraform-awsone/ec2/files</code> before deploying the environment.</p>
+<p><strong><em>Note:</em></strong> <strong><em>Atomic</em></strong> You need to download the Atomic Launcher from <a href="https://powerbox-jarvis-file.trendmicro-cloud.com/SFDC/DownloadFile_iv_jarvis.php?Query=qFFk%2B1MYPMLKEci1xi14KCgv1vM3eXaXOauUOhpMNNvwnxQddJMSFOHKNsbQ9F2LoIFZHLssJibE2BTXUIDXKiZQF0H4L%2FTjVNji9DGALMQk0P9PFprMO2gOpJgGjlRqIIbkBV3SGTjY4DJVqGqoEQ%3D%3D&amp;iv=ZDSEnjIt0ZefLf74">here</a> and store it in the <code>./terraform-awsone/files</code>-directory. You do <em>NOT</em> need to unzip the file.</p>
 </blockquote>
 <h2 id="prepare">Prepare<a class="headerlink" href="#prepare" title="Permanent link">&para;</a></h2>
 <p>Ensure the latest AWS CLI via the Playground menu <code>Tools --&gt; CLIs --&gt; AWS</code> and to have authenticated via <code>aws configure</code>.</p>
-<p>Next, verify that your <code>config.yaml</code> contains the following settings (get the correct values from C1WS and V1):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">services</span><span class="p">:</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cloudone</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nn">...</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="c1">## Cloud One Workload Security Tenant ID</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">ws_tenant_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="c1">## Cloud One Workload Security Token</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">ws_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="c1">## Cloud One Workload Security Linux Policy ID</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nt">ws_policy_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w"> </span><span class="w w-Error"> </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">visionone</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="c1">## Vision One Basecamp agent download url</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="nt">xbc_agent_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://api-us1.xbc.trendmicro.com/api/public/download_xbc_agent/v1.0/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX</span>
+<p>To prepare AWS One Playground demo environmant run</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>deploy-awsone.sh
 </code></pre></div>
-<p>To prepare AWS One Playground demo environmant run:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>deploy-awsone.sh
-</code></pre></div>
-<p>Change in the terraform subdirectory</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$PGPATH</span>/terraform-awsone
+<p>and exit the Playground menu. Change in the terraform subdirectory</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$PGPATH</span>/terraform-awsone
 </code></pre></div>
 <h3 id="optional-adapt-variablestf">Optional: Adapt <code>variables.tf</code><a class="headerlink" href="#optional-adapt-variablestf" title="Permanent link">&para;</a></h3>
-<p>The <code>variables.tf</code>-file contains the definitions for the AWS region and keypair to use. Adapt it to your needs as required.</p>
+<p>The <code>variables.tf</code>-file contains the definitions for the AWS region. Adapt it to your needs as required.</p>
 <p>If you are working on a shared environment you likely want to change <code>private_key_path</code> and <code>public_key_path</code> to make it unique in your environment.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="err">variable</span><span class="w"> </span><span class="s2">&quot;aws_region&quot;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="err">de</span><span class="kc">fault</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="s2">&quot;eu-central-1&quot;</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">}</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="err">variable</span><span class="w"> </span><span class="s2">&quot;public_key_path&quot;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="err">de</span><span class="kc">fault</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="s2">&quot;cnctraining-key-pair.pub&quot;</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">}</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="err">variable</span><span class="w"> </span><span class="s2">&quot;private_key_path&quot;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="err">de</span><span class="kc">fault</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="s2">&quot;cnctraining-key-pair&quot;</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="p">}</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="err">variable</span><span class="w"> </span><span class="s2">&quot;xbc_agent_url&quot;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="err">de</span><span class="kc">fault</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="p">}</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="err">variable</span><span class="w"> </span><span class="s2">&quot;access_ip&quot;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">  </span><span class="kc">t</span><span class="err">ype</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">s</span><span class="kc">tr</span><span class="err">i</span><span class="kc">n</span><span class="err">g</span>
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="err">variable</span><span class="w"> </span><span class="s2">&quot;aws_region&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="err">de</span><span class="kc">fault</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="s2">&quot;eu-central-1&quot;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">}</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="err">...</span>
 </code></pre></div>
 <h3 id="optional-adapt-terraformtfvars">Optional: Adapt <code>terraform.tfvars</code><a class="headerlink" href="#optional-adapt-terraformtfvars" title="Permanent link">&para;</a></h3>
 <p>The <code>terraform.tfvars</code>-file allows you to restrict internet access to your EC2 instances to only your public IP address. For this you need to change</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="na">access_ip</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.0.0.0/0&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="na">access_ip</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.0.0.0/0&quot;</span>
 </code></pre></div>
 <p>to </p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="err">access_ip</span><span class="w">      </span><span class="err">=</span><span class="w"> </span><span class="s2">&quot;&lt;YOUR IP&gt;/32&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="err">access_ip</span><span class="w">      </span><span class="err">=</span><span class="w"> </span><span class="s2">&quot;&lt;YOUR IP&gt;/32&quot;</span>
 </code></pre></div>
-<h3 id="create-ssh-keypair">Create SSH Keypair<a class="headerlink" href="#create-ssh-keypair" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ssh-keygen<span class="w"> </span>-f<span class="w"> </span>&lt;AS<span class="w"> </span>NAMED<span class="w"> </span>IN<span class="w"> </span>VARS.TF<span class="w"> </span>private_key_path&gt;<span class="w"> </span>-q<span class="w"> </span>-N<span class="w"> </span><span class="s2">&quot;&quot;</span>
-</code></pre></div>
-<p>Example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ssh-keygen<span class="w"> </span>-f<span class="w"> </span>cnctraining-key-pair<span class="w"> </span>-q<span class="w"> </span>-N<span class="w"> </span><span class="s2">&quot;&quot;</span>
+<p>The Windows Server get's a local administrator provisioned. Username and password are configured by default to</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="na">windows_username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;winadmin1&quot;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="na">windows_password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Chang3.M3!&quot;</span>
 </code></pre></div>
 <h2 id="deploy-with-terraform">Deploy with Terraform<a class="headerlink" href="#deploy-with-terraform" title="Permanent link">&para;</a></h2>
 <p>Prepare your terraform environment by running</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># init modules</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>terraform<span class="w"> </span>init
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># validate configuration</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>terraform<span class="w"> </span>validate
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># init modules</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>terraform<span class="w"> </span>init
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># validate configuration</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>terraform<span class="w"> </span>validate
 </code></pre></div>
 <p>Now, you're ready to create your lab environment on AWS :-)</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># plan configuration</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>terraform<span class="w"> </span>plan<span class="w"> </span>-out<span class="w"> </span>terraform.out
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># apply configuration</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>terraform<span class="w"> </span>apply<span class="w"> </span>terraform.out
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># plan configuration</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>terraform<span class="w"> </span>plan<span class="w"> </span>-out<span class="w"> </span>terraform.out
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># apply configuration</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>terraform<span class="w"> </span>apply<span class="w"> </span>terraform.out
 </code></pre></div>
 <p>For the impatient, simply run</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>terraform<span class="w"> </span>apply<span class="w"> </span>--auto-approve
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>terraform<span class="w"> </span>apply<span class="w"> </span>--auto-approve
 </code></pre></div>
 <h2 id="access-the-ec2-instances">Access the EC2 instance(s)<a class="headerlink" href="#access-the-ec2-instances" title="Permanent link">&para;</a></h2>
-<p>If you want to sniff around on your newly created little instance connect to it via:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># web1</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>ssh<span class="w"> </span>-i<span class="w"> </span><span class="k">$(</span>terraform<span class="w"> </span>output<span class="w"> </span>-raw<span class="w"> </span>private_key_path<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">StrictHostKeyChecking</span><span class="o">=</span>no<span class="w"> </span>ubuntu@<span class="k">$(</span>terraform<span class="w"> </span>output<span class="w"> </span>-raw<span class="w"> </span>public_instance_ip_web1<span class="k">)</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># web2</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>ssh<span class="w"> </span>-i<span class="w"> </span><span class="k">$(</span>terraform<span class="w"> </span>output<span class="w"> </span>-raw<span class="w"> </span>private_key_path<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">StrictHostKeyChecking</span><span class="o">=</span>no<span class="w"> </span>ubuntu@<span class="k">$(</span>terraform<span class="w"> </span>output<span class="w"> </span>-raw<span class="w"> </span>public_instance_ip_web2<span class="k">)</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1"># db1</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>ssh<span class="w"> </span>-i<span class="w"> </span><span class="k">$(</span>terraform<span class="w"> </span>output<span class="w"> </span>-raw<span class="w"> </span>private_key_path<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">StrictHostKeyChecking</span><span class="o">=</span>no<span class="w"> </span>ubuntu@<span class="k">$(</span>terraform<span class="w"> </span>output<span class="w"> </span>-raw<span class="w"> </span>public_instance_ip_db1<span class="k">)</span>
+<p>If you want to sniff around on your newly created little instances connect to it via:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Linux web1</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>ssh<span class="w"> </span>-i<span class="w"> </span><span class="k">$(</span>terraform<span class="w"> </span>output<span class="w"> </span>-raw<span class="w"> </span>private_key_path<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">StrictHostKeyChecking</span><span class="o">=</span>no<span class="w"> </span>ubuntu@<span class="k">$(</span>terraform<span class="w"> </span>output<span class="w"> </span>-raw<span class="w"> </span>public_instance_ip_web1<span class="k">)</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Linux db1</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>ssh<span class="w"> </span>-i<span class="w"> </span><span class="k">$(</span>terraform<span class="w"> </span>output<span class="w"> </span>-raw<span class="w"> </span>private_key_path<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">StrictHostKeyChecking</span><span class="o">=</span>no<span class="w"> </span>ubuntu@<span class="k">$(</span>terraform<span class="w"> </span>output<span class="w"> </span>-raw<span class="w"> </span>public_instance_ip_db1<span class="k">)</span>
 </code></pre></div>
+<p>To connect to the <code>srv1</code> use Remote Desktop with username/password from <code>terraform.tfvars</code>.</p>
+<h2 id="optional-sserver-workload-protection">Optional: Sserver &amp; Workload Protection<a class="headerlink" href="#optional-sserver-workload-protection" title="Permanent link">&para;</a></h2>
+<p>Create Event-Based Tasks to automatically assign Linux or Windows server policies to the machines.</p>
+<p>Agent-initiated Activation Linux</p>
+<ul>
+<li>Actions:</li>
+<li>Assign Policy: Linux Server</li>
+<li>Conditions:</li>
+<li>"Platform" matches ".<em>Linux.</em>"</li>
+</ul>
+<p>Agent-initiated Activation Windows</p>
+<ul>
+<li>Actions:</li>
+<li>Assign Policy: Windows Server</li>
+<li>Conditions:</li>
+<li>"Platform" matches ".<em>Windows.</em>"</li>
+</ul>
 <h2 id="create-findings">Create Findings<a class="headerlink" href="#create-findings" title="Permanent link">&para;</a></h2>
 <p>In the next step we're preparing some findings for Sentry.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>scripts/create-findings.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>scripts/create-findings.sh
 </code></pre></div>
 <p>Feel free to have a look on the script above, but in theory it should prepare six findings.</p>
+<h2 id="atomicred">AtomicRed<a class="headerlink" href="#atomicred" title="Permanent link">&para;</a></h2>
+<p>The Windows Server <code>srv1</code> and the Linux Server <code>web1</code> have the Atomic Launcher available. On <code>web1</code> it's located in the home directory of the user, on <code>srv1</code> its within <code>C:\Windows\Temp</code>.</p>
+<p>Unzip password is <code>virus</code>.</p>
 <h2 id="detroy">Detroy<a class="headerlink" href="#detroy" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># destroy</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>terraform<span class="w"> </span>destroy
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># destroy</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>terraform<span class="w"> </span>destroy
 </code></pre></div>
 
 
