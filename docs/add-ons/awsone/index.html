@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../gitlab/">
+        <link rel="prev" href="../../deployments/">
       
       
-        <link rel="next" href="../../play/tools/">
+        <link rel="next" href="../cilium/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.18">
@@ -373,6 +373,143 @@
               
   
   
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          AWS One Playground
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        AWS One Playground
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vision-one-xdr-for-containers" class="md-nav__link">
+    Vision One XDR for Containers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vision-one-endpoint-security-server-workload-protection" class="md-nav__link">
+    Vision One Endpoint Security Server &amp; Workload Protection
+  </a>
+  
+    <nav class="md-nav" aria-label="Vision One Endpoint Security Server & Workload Protection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prepare" class="md-nav__link">
+    Prepare
+  </a>
+  
+    <nav class="md-nav" aria-label="Prepare">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verify-your-configyaml" class="md-nav__link">
+    Verify your config.yaml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-adapt-terraformtfvars" class="md-nav__link">
+    Optional: Adapt terraform.tfvars
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-server-workload-protection-event-based-tasks" class="md-nav__link">
+    Optional: Server &amp; Workload Protection Event-Based Tasks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy-with-terraform" class="md-nav__link">
+    Deploy with Terraform
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-the-ec2-instances" class="md-nav__link">
+    Access the EC2 instance(s)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-findings-and-scan-with-sentry" class="md-nav__link">
+    Create Findings and Scan with Sentry
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atomic-launcher" class="md-nav__link">
+    Atomic Launcher
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#destroy" class="md-nav__link">
+    Destroy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
   
     <li class="md-nav__item">
       <a href="../cilium/" class="md-nav__link">
@@ -574,143 +711,6 @@
       <a href="../gitlab/" class="md-nav__link">
         GitLab
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          AWS One Playground
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        AWS One Playground
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#vision-one-xdr-for-containers" class="md-nav__link">
-    Vision One XDR for Containers
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vision-one-endpoint-security-server-workload-protection" class="md-nav__link">
-    Vision One Endpoint Security Server &amp; Workload Protection
-  </a>
-  
-    <nav class="md-nav" aria-label="Vision One Endpoint Security Server & Workload Protection">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prepare" class="md-nav__link">
-    Prepare
-  </a>
-  
-    <nav class="md-nav" aria-label="Prepare">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#verify-your-configyaml" class="md-nav__link">
-    Verify your config.yaml
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#optional-adapt-terraformtfvars" class="md-nav__link">
-    Optional: Adapt terraform.tfvars
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#optional-server-workload-protection-event-based-tasks" class="md-nav__link">
-    Optional: Server &amp; Workload Protection Event-Based Tasks
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deploy-with-terraform" class="md-nav__link">
-    Deploy with Terraform
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#access-the-ec2-instances" class="md-nav__link">
-    Access the EC2 instance(s)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-findings-and-scan-with-sentry" class="md-nav__link">
-    Create Findings and Scan with Sentry
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#atomic-launcher" class="md-nav__link">
-    Atomic Launcher
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#destroy" class="md-nav__link">
-    Destroy
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1032,11 +1032,11 @@
 <li>Cloud One Sentry</li>
 </ul>
 <h2 id="vision-one-xdr-for-containers">Vision One XDR for Containers<a class="headerlink" href="#vision-one-xdr-for-containers" title="Permanent link">&para;</a></h2>
-<p>At the time of writing, XDR for Containers is in an early preview stage. Unless you already have an EKS cluster running whose VPC is connected to XDR for Containers you can create one by creating one from within the Playground menu. Choose <code>EKS-A  Elastic Kubernetes Cluster (Amazon Linux)</code> in this case. This cluster variant supports Application Load Balancing which is required for XDR for Containers.</p>
+<p>At the time of writing, XDR for Containers is in an early preview stage. Unless you already have an EKS cluster running whose VPC is connected to XDR for Containers you can create one from within the Playground menu. Choose <code>EKS-A  Elastic Kubernetes Cluster (Amazon Linux)</code> in this case. This cluster variant supports Application Load Balancing which is required for XDR for Containers.</p>
 <p>You need to create a connection with XDR for Containers by going through the workflow in your Vision One environment.</p>
-<p>After setting everything up, you can deploy exploitable workload via the <code>Hacks</code> submenu of the Playground.</p>
+<p>After setting everything up, you can deploy exploitable workload (<code>Deploy Attackers and Victims</code>) via the <code>Hacks</code> submenu of the Playground.</p>
 <blockquote>
-<p><strong><em>Note:</em></strong> This process will get easier with the GA release of XDR for containers.</p>
+<p><strong><em>Note:</em></strong> This process will get easier with the GA release of XDR for Containers.</p>
 </blockquote>
 <h2 id="vision-one-endpoint-security-server-workload-protection">Vision One Endpoint Security Server &amp; Workload Protection<a class="headerlink" href="#vision-one-endpoint-security-server-workload-protection" title="Permanent link">&para;</a></h2>
 <p>Three different instances are currently provided by the AWS One Playground with different configurations:</p>
@@ -1044,7 +1044,6 @@
 <ul>
 <li>Ubuntu Linux 20.04</li>
 <li>Nginx and Wordpress deployment</li>
-<li>Atomic Launcher version 1.0.0.1009</li>
 <li>Vision One Endpoint Security Basecamp agent for Server &amp; Workload Protection</li>
 </ul>
 <p>Instance Db1:</p>
@@ -1056,9 +1055,9 @@
 <p>Instance Srv1:</p>
 <ul>
 <li>Windows Server 2022 Standalone Server</li>
-<li>Atomic Launcher version 1.0.0.1013</li>
 <li>Vision One Endpoint Security Basecamp agent for Server &amp; Workload Protection</li>
 </ul>
+<p>All instances are integrated with Vision One Endpoint Security for Server &amp; Workload Protection and have access to the Attomic Launcher.</p>
 <p>The instances are created within a public subnet of an automatically created VPC. They all get an EC2 instance role assigned providing them the ability to access installer packages stored within an S3 bucket.</p>
 <p>All instances including the Windows Server are accessible via ssh and key authentication. RDP for Windows is supported as well.</p>
 <h3 id="prepare">Prepare<a class="headerlink" href="#prepare" title="Permanent link">&para;</a></h3>
@@ -1088,8 +1087,8 @@
 <p>and exit the Playground menu. Change in the terraform subdirectory</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$PGPATH</span>/terraform-awsone
 </code></pre></div>
-<p>Next, you need to dowonload the installer packages for Vision One Endpoint Security for Windows and Linux operating systems from your V1ES. You need to do this manually since these installers are specific to your environment. The downloaded files should be named <code>TMServerAgent_Linux_auto_64_Server_-_Workload_Protection_Manager.tar</code> respectively <code>TMServerAgent_Windows_auto_64_Server_-_Workload_Protection_Manager.zip</code> and are to be placed into the directory <code>./terraform-awsone/files</code></p>
-<p>Optionally, download the Atomic Launcher from <a href="https://powerbox-jarvis-file.trendmicro-cloud.com/SFDC/DownloadFile_iv_jarvis.php?Query=qFFk%2B1MYPMLKEci1xi14KCgv1vM3eXaXOauUOhpMNNvwnxQddJMSFOHKNsbQ9F2LoIFZHLssJibE2BTXUIDXKiZQF0H4L%2FTjVNji9DGALMQk0P9PFprMO2gOpJgGjlRqIIbkBV3SGTjY4DJVqGqoEQ%3D%3D&amp;iv=ZDSEnjIt0ZefLf74">here</a> and store them in the  <code>./terraform-awsone/files</code> directory as well.</p>
+<p>Next, you need to download the installer packages for Vision One Endpoint Security for Windows and Linux operating systems from your Vision One instance. You need to do this manually since these installers are specific to your environment. The downloaded files should be named <code>TMServerAgent_Linux_auto_64_Server_-_Workload_Protection_Manager.tar</code> respectively <code>TMServerAgent_Windows_auto_64_Server_-_Workload_Protection_Manager.zip</code> and are to be placed into the directory <code>./terraform-awsone/files</code></p>
+<p>Optionally, download the Atomic Launcher from <a href="https://wiki.jarvis.trendmicro.com/display/GRTL/Atomic+Launcher#AtomicLauncher-DownloadAtomicLauncher">here</a> and store them in the  <code>./terraform-awsone/files</code> directory as well.</p>
 <p>Your <code>files</code>-directory should look like this:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>-rw-rw-r--<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">17912014</span><span class="w"> </span>May<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">09</span>:10<span class="w"> </span>atomic_launcher_linux_1.0.0.1009.zip
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>-rw-rw-r--<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">96135367</span><span class="w"> </span>May<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">09</span>:05<span class="w"> </span>atomic_launcher_windows_1.0.0.1013.zip
@@ -1129,17 +1128,13 @@
 <p>Create Event-Based Tasks to automatically assign Linux or Windows server policies to the machines.</p>
 <p>Agent-initiated Activation Linux</p>
 <ul>
-<li>Actions:</li>
-<li>Assign Policy: Linux Server</li>
-<li>Conditions:</li>
-<li>"Platform" matches ".<em>Linux.</em>"</li>
+<li><em>Actions:</em> Assign Policy: Linux Server</li>
+<li><em>Conditions:</em> "Platform" matches ".<em>Linux.</em>"</li>
 </ul>
 <p>Agent-initiated Activation Windows</p>
 <ul>
-<li>Actions:</li>
-<li>Assign Policy: Windows Server</li>
-<li>Conditions:</li>
-<li>"Platform" matches ".<em>Windows.</em>"</li>
+<li><em>Actions:</em> Assign Policy: Windows Server</li>
+<li><em>Conditions:</em> "Platform" matches ".<em>Windows.</em>"</li>
 </ul>
 <h3 id="deploy-with-terraform">Deploy with Terraform<a class="headerlink" href="#deploy-with-terraform" title="Permanent link">&para;</a></h3>
 <p>Now, you're ready to create your lab environment on AWS :-)</p>
@@ -1150,7 +1145,7 @@
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>terraform<span class="w"> </span>apply<span class="w"> </span>terraform.out
 </code></pre></div>
 <p>For the impatient, simply run</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>terraform<span class="w"> </span>apply<span class="w"> </span>--auto-approve
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>terraform<span class="w"> </span>apply<span class="w"> </span>-auto-approve
 </code></pre></div>
 <p>Expected output (example):</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Apply<span class="w"> </span>complete!<span class="w"> </span>Resources:<span class="w"> </span><span class="m">26</span><span class="w"> </span>added,<span class="w"> </span><span class="m">0</span><span class="w"> </span>changed,<span class="w"> </span><span class="m">0</span><span class="w"> </span>destroyed.
